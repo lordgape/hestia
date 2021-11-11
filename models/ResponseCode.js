@@ -1,0 +1,7 @@
+module.exports = {
+  UNKNOWN_ERROR: 'UNKOWN_ERROR',
+  NOT_FOUND: 'NOT_FOUND',
+  SUCCESS: 'SUCCESS',
+  FAILED: 'FAILED',
+
+};

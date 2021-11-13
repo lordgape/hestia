@@ -12,7 +12,7 @@ module.exports = class Controller {
 
   static async pivotCSV(req, res) {
     try {
-      const transformedCSV = await HestiaService.pivotCSV(req.file);
+      const transformedCSV = await HestiaService.pivotCSV(req.file.buffer);
       res.setHeader("Content-Type", "text/csv");
       res.setHeader(
         "Content-Disposition",

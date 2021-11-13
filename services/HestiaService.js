@@ -8,7 +8,7 @@ module.exports = class HestiaService {
     return { msg: "Ping Pong" };
   }
 
-  static pivotCSV(file) {
+  static pivotCSV(buffer) {
     return new Promise(async (resolve, reject) => {
       let scriptResponse = [];
 
@@ -19,7 +19,7 @@ module.exports = class HestiaService {
 
       const writeStream = fs.createWriteStream(FILENAME);
 
-      writeStream.write(file.buffer, (err) => {
+      writeStream.write(buffer, (err) => {
         if (err) {
           console.log(`Error writing  ${JSON.stringify(err)}`);
         }

@@ -31,3 +31,18 @@ jobs:
     - run: pip install hestia_earth.utils
     - run: pip install pandas
     - run: npm test
+
+  Perfomance:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Run Load Test
+        uses: apardo04/locust-github-action@master
+        with:
+          LOCUSTFILE: "/test/load/locustfile.py"
+          URL:  "http://localhost:4000"
+          USERS: "5"
+          RATE: "5"
+          RUNTIME: "10s"

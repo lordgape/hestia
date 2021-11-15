@@ -5,7 +5,7 @@ const route = (app) => {
 
   app.use((req, res) => {
     if (req.url == "/") {
-      res.json({ code: "SUCCESS", response: `Hesta Server is in good health` });
+      return res.json({ code: "SUCCESS", response: `Hesta Server is in good health` });
     }
 
     // respond with json

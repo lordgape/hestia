@@ -122,4 +122,4 @@ dist
 config/config.json
 
 # script
-test/loadtest/__pycache__
+test/load/__pycache__

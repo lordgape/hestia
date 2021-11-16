@@ -17,7 +17,6 @@ jobs:
     strategy:
       matrix:
         node-version: [12.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
     - uses: actions/checkout@v2
@@ -32,17 +31,20 @@ jobs:
     - run: pip install pandas
     - run: npm test
 
-  Perfomance:
-    runs-on: ubuntu-latest
-    needs: [build]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: Run Load Test
-        uses: apardo04/locust-github-action@master
-        with:
-          LOCUSTFILE: "/test/load/locustfile.py"
-          URL:  "http://localhost:4000"
-          USERS: "5"
-          RATE: "5"
-          RUNTIME: "10s"
+  - name: Build and Start Container
+      run: |
+        docker build -t hestia .
+        docker run -dp 4000:4000 hestia
+  
+    - name: Confirm application is running
+      run: docker ps
+
+    - name: Install locust
+      run: pip3 install locust
+       
+    
+    - name: Run load test
+      run: |
+       cd test/load
+       ls
+       locust -f locustfile.py --headless -u 100 -r 5 --run-time "20s" -H "http://localhost:4000"

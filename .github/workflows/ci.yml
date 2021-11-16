@@ -27,9 +27,6 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build --if-present
-    - run: pip install hestia_earth.utils
-    - run: pip install pandas
-    - run: npm test
 
     - name: Build and Start Container
       run: |
@@ -38,6 +35,9 @@ jobs:
   
     - name: Confirm application is running
       run: docker ps
+
+    - name: Run unit test
+      run: npm test
 
     - name: Install locust
       run: pip3 install locust

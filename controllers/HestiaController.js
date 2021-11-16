@@ -2,14 +2,6 @@ const HestiaService = require("../services/HestiaService");
 const ControllerUtil = require("../utils/ControllerUtil");
 
 module.exports = class Controller {
-  static async ping(req, res) {
-    try {
-      return res.json(await HestiaService.ping());
-    } catch (error) {
-      return ControllerUtil.sendErrorResponse(error, res);
-    }
-  }
-
   static async pivotCSV(req, res) {
     try {
       const transformedCSV = await HestiaService.pivotCSV(req.file.buffer);

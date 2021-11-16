@@ -3,7 +3,8 @@ const multer = require('multer');
 
 const app = express();
 
-const PORT = 4000;
+//Set up port
+const PORT = global.process.env.PORT || 4000;
 
 const route = require("./routes");
 route(app);

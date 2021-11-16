@@ -45,6 +45,6 @@ jobs:
     
     - name: Run load test
       run: |
-      cd test/load
-      ls
-      locust -f locustfile.py --headless -u 100 -r 5 --run-time "20s" -H "http://localhost:4000"
+        cd test/load
+        ls
+        locust -f locustfile.py --headless -u 100 -r 5 --run-time "20s" -H "http://localhost:4000"

@@ -4,10 +4,6 @@ const fs = require("fs");
 const { unlink } = fs.promises;
 
 module.exports = class HestiaService {
-  static async ping() {
-    return { msg: "Ping Pong" };
-  }
-
   static pivotCSV(buffer) {
     return new Promise(async (resolve, reject) => {
       let scriptResponse = [];

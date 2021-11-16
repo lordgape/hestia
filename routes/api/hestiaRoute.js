@@ -1,7 +1,8 @@
 const router = require("express").Router();
-const multer = require("multer");
-const upload = multer();
+
 const HestiaController = require("../../controllers/HestiaController");
+const { cacheMiddleware } = require("../../middlewares/cacheMiddleware");
+const { upload } = require("../../middlewares/uploadCSV");
 
 /**
  * @swagger
@@ -9,7 +10,7 @@ const HestiaController = require("../../controllers/HestiaController");
  *    post:
  *     description: Pivot a CSV
  *     produces:
- *       - text/csv 
+ *       - text/csv
  *     parameters:
  *       - name: uploadCsv
  *         in: formData
@@ -19,11 +20,15 @@ const HestiaController = require("../../controllers/HestiaController");
  *     responses:
  *       200:
  *         description: Pivot a CSV using Hestia tools
- *       404:
- *         description: Not Found
+ *       400:
+ *         description: Bad Request
  */
-router.post("/pivot", upload.single("uploadCsv"), (req, res) => {
-  return HestiaController.pivotCSV(req, res);
-});
+router.post(
+  "/pivot",
+  [upload.single("uploadCsv"), cacheMiddleware(30)],
+  (req, res) => {
+    return HestiaController.pivotCSV(req, res);
+  }
+);
 
 module.exports = router;

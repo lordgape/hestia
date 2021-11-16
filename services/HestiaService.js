@@ -1,6 +1,8 @@
 const { spawn } = require("child_process");
 const { randomBytes } = require("crypto");
 const fs = require("fs");
+const AppErrors = require("../models/AppError");
+const ResponseCode = require("../models/ResponseCode");
 const { unlink } = fs.promises;
 
 module.exports = class HestiaService {
@@ -36,8 +38,20 @@ module.exports = class HestiaService {
 
         // clean up tmp file
         unlink(FILENAME);
-        // Send data to browser
-        resolve(scriptResponse.join(""));
+
+        // code with integer greater than zero. Indicate some went wrong
+        if (code) {
+          reject(
+            new AppErrors(
+              400,
+              ResponseCode.FAILED,
+              `Fail to process file. Ensure csv is in right format`
+            )
+          );
+        } else {
+          // Send data to browser
+          resolve(scriptResponse.join(""));
+        }
       });
     });
   }

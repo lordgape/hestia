@@ -2,7 +2,7 @@ const AppError = require("../models/AppError");
 const AppResponse = require("../models/AppResponse");
 const ResponseCode = require("../models/ResponseCode");
 
-module.exports = class ControllerUtil {
+module.exports = class ErrorUtil {
 
   /**
    * 

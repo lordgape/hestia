@@ -1,5 +1,5 @@
 const HestiaService = require("../services/HestiaService");
-const ControllerUtil = require("../utils/ControllerUtil");
+const ErrorUtil = require("../utils/ErrorUtil");
 
 module.exports = class Controller {
   static async pivotCSV(req, res) {
@@ -13,7 +13,7 @@ module.exports = class Controller {
 
       return res.status(200).end(transformedCSV);
     } catch (error) {
-      return ControllerUtil.sendErrorResponse(error, res);
+      return ErrorUtil.sendErrorResponse(error, res);
     }
   }
 };

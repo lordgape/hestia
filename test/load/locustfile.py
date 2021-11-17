@@ -7,7 +7,7 @@ class HestiaTask(HttpUser):
     def on_start(self):
         self.client.get("/")
 
-    def _get_csv(self, file_path, file_content_type='text/plain'):
+    def _get_csv(self, file_path, file_content_type='text/csv'):
         import os
         file_name = os.path.basename(file_path)
         file_content = open(file_path, 'rb')

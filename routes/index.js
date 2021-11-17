@@ -3,9 +3,9 @@ const swaggerJSDoc = require("swagger-jsdoc");
 const path = require("path");
 
 const hestiaRoute = require("./api/hestiaRoute");
+const ErrorUtil = require("../utils/ErrorUtil");
 
 const route = (app) => {
-  
   const swaggerSpec = swaggerJSDoc({
     swaggerDefinition: {
       info: {
@@ -54,6 +54,12 @@ const route = (app) => {
 
     // default to plain-text. send()
     res.type("txt").send("Not found");
+  });
+
+  app.use(function (error, req, res, next) {
+    // logic
+    console.log("Middleware error occur");
+    return ErrorUtil.sendErrorResponse(error, res);
   });
 };
 

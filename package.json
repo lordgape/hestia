@@ -1,7 +1,7 @@
 {
   "name": "hestia",
   "version": "1.0.0",
-  "description": "API to process CSV for Hestia ",
+  "description": "API to process CSV for Hestia (University of Oxford) ",
   "main": "index.js",
   "scripts": {
     "start": "node .",

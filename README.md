@@ -3,6 +3,8 @@
 
 [Hestia](https://github.com/lordgape/hestia) API to process CSV for Hestia .
 
+![Tests](https://github.com/lordgape/hestia/actions/workflows/ci.yml/badge.svg)
+
 ## Installation
 
 ```bash
